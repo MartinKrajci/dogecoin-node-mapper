@@ -1,0 +1,18 @@
+version: '3'
+  
+services:
+  db: 
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=dogepass
+      - POSTGRES_DB=postgres
+    volumes:
+      - ./postgres-db:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+  dogecoinmapper:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
